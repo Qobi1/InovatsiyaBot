@@ -1,8 +1,4 @@
-from contextlib import closing
-
-from django.db import connection
-from django.shortcuts import render
-from telegram import Update, KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 # Create your views here.
 from TelegramBot.settings import API_URL
@@ -115,7 +111,6 @@ def inline_handler(update: Update, context: CallbackContext):
             product = get(id=id)[0]
             img = product['qr_code']
             # img = 'https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80'
-            
             context.bot.send_photo(chat_id=user.id, photo=f"{img}")
 
     log.log = state
